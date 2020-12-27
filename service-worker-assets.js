@@ -53,7 +53,7 @@
       "url": "favicon.ico"
     },
     {
-      "hash": "sha256-+OkQxv0ltzY7DpNerbtKJQODH5QW1hpf+ykWIm84w7A=",
+      "hash": "sha256-kWPla+zfzLN\/6h\/8GKi0kC\/s3xe\/wZQSAkZdb0Cmlmg=",
       "url": "index.html"
     },
     {
@@ -165,7 +165,7 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-mYuvASPmPQVNDbwCCoWVjKr+6JJQCdHxciwsj1ZyLpU=",
+      "hash": "sha256-MstoNIS\/WSxsCDvN7vBAShPnHji\/B\/OTIFX+PHGzwBg=",
       "url": "_framework\/Core.dll"
     },
     {
@@ -253,7 +253,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-oKYZ8BDVO5zJzFA8i5PPyBXrT9L6Axl3up0xhIMLsxo=",
+      "hash": "sha256-ewPmrdyxO7H\/0\/jhQN2B6b\/9i7x2BwBly8AaEvrjmlA=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -261,5 +261,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "0JV8ljGe"
+  "version": "USjugOsq"
 };
