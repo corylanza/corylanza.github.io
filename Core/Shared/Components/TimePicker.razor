@@ -1,0 +1,16 @@
+﻿<select @bind="HourPicked">
+   @foreach (var hour in Enumerable.Range(1, 12))
+    {
+        <option value="@hour">@hour</option>
+    }
+</select>
+<select @bind="Minute">
+   @for (int i = 0; i < 60; i += 5)
+    {
+        <option value="@i">@i.ToString("D2")</option>
+    }
+</select>
+<select @bind="AmOrPm">
+    <option value="@AM">AM</option>
+    <option value="@PM" selected>PM</option>
+</select>

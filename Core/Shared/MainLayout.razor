@@ -1,0 +1,35 @@
+﻿@inherits LayoutComponentBase
+
+
+<style>
+    .purple {
+        background-color: #6935bd;
+    }
+
+    .bg-color-dark {
+        background-color: #121212;
+    }
+
+    .bg-color-primary {
+        color: white;
+        background-color: #212121;
+    }
+    .circle-btn {
+        border-radius: 50%;
+    }
+            
+    .gbc-iframe {
+        overflow: hidden;
+        width: 100%;
+        min-height: 50rem;
+        height: 100%;
+    }
+</style>
+
+<div class="page bg-color-dark">
+    <NavMenu />
+
+    <div class="content px-4">
+        @Body
+    </div>
+</div>

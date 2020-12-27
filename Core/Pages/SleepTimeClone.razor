@@ -1,0 +1,51 @@
+﻿@page "/sleep-time-clone"
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-4 bg-color-primary text-center">
+            <h1>I have to wake up at</h1>
+            <div class="my-3">
+                <Core.Shared.Components.TimePicker @ref="Time1"></Core.Shared.Components.TimePicker>
+                <button class="btn btn-primary" id="calculate" @onclick="Calculate">Calculate</button>
+                <div class="@(Results.Count == 0 ? "d-none" : "")">
+                    <p>If you have to wake up at @(Time1?.Time.ToString() ?? ""), you should try to fall asleep at one of the following times:</p>
+                    <p>
+                        @foreach (var date in Results)
+                        {
+                            <span>@date</span><text> OR </text>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 bg-color-primary text-center">
+
+            <h1>If you go to bed now, you should wake up at...</h1>
+        </div>
+        <div class="col-12 col-md-4 bg-color-primary text-center">
+
+            <h1>I plan to fall asleep at</h1>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Core.Shared.Components.TimePicker Time1;
+
+    private List<TimeSpan> Results = new List<TimeSpan>();
+
+    private void Calculate()
+    {
+        Results.Clear();
+        Results.Add(Time1.Time.Subtract(new TimeSpan(1, 30, 0)));
+        Results.Add(Time1.Time.Subtract(new TimeSpan(3, 00, 0)));
+        Results.Add(Time1.Time.Subtract(new TimeSpan(4, 30, 0)));
+        Results.Add(Time1.Time.Subtract(new TimeSpan(6, 00, 0)));
+    }
+
+    private void WhenToWakeUpIfYouFallAsleepAt(DateTime date)
+    {
+
+    }
+}
