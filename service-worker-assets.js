@@ -61,6 +61,18 @@
       "url": "manifest.json"
     },
     {
+      "hash": "sha256-iJPiV6nPKOusT7m1yDaoFZMvMxWhoNfnMTxoyJFfsJk=",
+      "url": "rusty-gbc\/gbc_wasm.js"
+    },
+    {
+      "hash": "sha256-PrkKA4SurfetEHwm7+o2vaf4e7\/79vZUv7rzXDijq8Y=",
+      "url": "rusty-gbc\/gbc_wasm.wasm"
+    },
+    {
+      "hash": "sha256-lf66iFWOuhSY9T+IKMYFOgIWRmci+Sis7D5AV0eicd8=",
+      "url": "rusty-gbc\/index.html"
+    },
+    {
       "hash": "sha256-nXByiCO4+RYyh+A88TSSZDwAJMF7M7Up\/h6dfAA19C8=",
       "url": "_framework\/dotnet.timezones.blat"
     },
@@ -249,5 +261,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "H5YI6AEf"
+  "version": "0JV8ljGe"
 };
