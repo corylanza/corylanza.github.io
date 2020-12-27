@@ -1,4 +1,8 @@
 /* /Shared/MainLayout.razor.rz.scp.css */
+.content[b-qqf1hif09e] {
+    min-height: 100vh;
+}
+
 /*.page {
     position: relative;
     display: flex;
