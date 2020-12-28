@@ -53,7 +53,7 @@
       "url": "favicon.ico"
     },
     {
-      "hash": "sha256-kWPla+zfzLN\/6h\/8GKi0kC\/s3xe\/wZQSAkZdb0Cmlmg=",
+      "hash": "sha256-EchPG8ggpDYBUMwC5NjRLWnnBtunfMn2hr9hs9JgWqU=",
       "url": "index.html"
     },
     {
@@ -61,16 +61,20 @@
       "url": "manifest.json"
     },
     {
+      "hash": "sha256-pfn\/piHYM\/1snaHiEizIP9PScCtkOBs2erP1W39UzJw=",
+      "url": "rusty-gbc-dist\/about.html"
+    },
+    {
       "hash": "sha256-iJPiV6nPKOusT7m1yDaoFZMvMxWhoNfnMTxoyJFfsJk=",
-      "url": "rusty-gbc\/gbc_wasm.js"
+      "url": "rusty-gbc-dist\/gbc_wasm.js"
     },
     {
       "hash": "sha256-PrkKA4SurfetEHwm7+o2vaf4e7\/79vZUv7rzXDijq8Y=",
-      "url": "rusty-gbc\/gbc_wasm.wasm"
+      "url": "rusty-gbc-dist\/gbc_wasm.wasm"
     },
     {
       "hash": "sha256-lf66iFWOuhSY9T+IKMYFOgIWRmci+Sis7D5AV0eicd8=",
-      "url": "rusty-gbc\/index.html"
+      "url": "rusty-gbc-dist\/index.html"
     },
     {
       "hash": "sha256-nXByiCO4+RYyh+A88TSSZDwAJMF7M7Up\/h6dfAA19C8=",
@@ -165,7 +169,7 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-MstoNIS\/WSxsCDvN7vBAShPnHji\/B\/OTIFX+PHGzwBg=",
+      "hash": "sha256-UxTOzXVdwwKvkXn9W59FqwnpkE+EruIG0BkMdkwYaeo=",
       "url": "_framework\/Core.dll"
     },
     {
@@ -253,7 +257,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-ewPmrdyxO7H\/0\/jhQN2B6b\/9i7x2BwBly8AaEvrjmlA=",
+      "hash": "sha256-oxZybmIvzE7IC5FTnTs5wNs2QAMevGGI6QkWo+PP0Ks=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -261,5 +265,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "USjugOsq"
+  "version": "1R0yL9xK"
 };
