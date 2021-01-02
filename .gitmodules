@@ -1,0 +1,3 @@
+[submodule "Outlet-Lang"]
+	path = Outlet-Lang
+	url = https://github.com/corylanza/Outlet-Lang
