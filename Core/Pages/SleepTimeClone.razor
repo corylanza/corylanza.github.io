@@ -3,10 +3,12 @@
 <div class="container">
     <div class="card-deck">
         <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-header">
+                <i class="material-icons">alarm</i>
+            </div>
             <div class="card-body">
                 <h5 class="card-title">I have to wake up at</h5>
-                <TimePicker @ref="Time1"></TimePicker>
+                <TimePicker @ref="Time1" Default="new TimeSpan(8, 0, 0)"></TimePicker>
                 <button class="btn btn-primary" @onclick="Calculate">Calculate</button>
                 <div class="@(Results.Count == 0 ? "d-none" : "")">
                     <p>If you have to wake up at @(Time1?.Time.ToString() ?? ""), you should try to fall asleep at one of the following times:</p>
@@ -20,17 +22,17 @@
             </div>
         </div>
         <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <i class="material-icons">night_shelter</i>
             <div class="card-body">
                 <h5 class="card-title">If you go to bed now, you should wake up at...</h5>
                 <button class="btn btn-primary" @onclick="(e => WhenToWakeUpIfYouFallAsleepAt(DateTime.Now.TimeOfDay))">Calculate</button>
             </div>
         </div>
         <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <i class="material-icons">schedule</i>
             <div class="card-body">
                 <h5 class="card-title">I plan to fall asleep at</h5>
-                <TimePicker @ref="Time2"></TimePicker>
+                <TimePicker @ref="Time2" Default="new TimeSpan(23, 0, 0)"></TimePicker>
                 <button class="btn btn-primary" @onclick="@(e => WhenToWakeUpIfYouFallAsleepAt(Time2.Time))">Calculate</button>
             </div>
         </div>

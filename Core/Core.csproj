@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Outlet-Lang\Outlet.StandardLib\Outlet.StandardLib.csproj" />
     <ProjectReference Include="..\Outlet-Lang\Outlet\Outlet.csproj" />
   </ItemGroup>
 
