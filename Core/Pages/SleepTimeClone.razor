@@ -1,6 +1,11 @@
 ﻿@page "/sleep-time-clone"
 
-<div class="container">
+<div class="sleep-time-clone container">
+    <div class="text-white">
+        <label for="customRange3" class="form-label">How long would you like to sleep for?</label>
+        <input type="range" class="form-range" min="1.5" max="12" step="1.5" @bind-value="HoursToSleep" @bind-value:event="oninput" />
+        <p>@HoursToSleep</p>
+    </div>
     <div class="card-deck">
         <div class="card">
             <div class="card-header">
@@ -9,32 +14,77 @@
             <div class="card-body">
                 <h5 class="card-title">I have to wake up at</h5>
                 <TimePicker @ref="Time1" Default="new TimeSpan(8, 0, 0)"></TimePicker>
-                <button class="btn btn-primary" @onclick="Calculate">Calculate</button>
-                <div class="@(Results.Count == 0 ? "d-none" : "")">
-                    <p>If you have to wake up at @(Time1?.Time.ToString() ?? ""), you should try to fall asleep at one of the following times:</p>
-                    <p>
-                        @foreach (var date in Results)
-                        {
-                            <span>@date</span><text> OR </text>
-                        }
-                    </p>
-                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" @onclick="(e => Result = BedTimeResult(Time1!.Time))">Calculate</button>
             </div>
         </div>
         <div class="card">
-            <i class="material-icons">night_shelter</i>
+            <div class="card-header">
+                <i class="material-icons">night_shelter</i>
+            </div>
             <div class="card-body">
                 <h5 class="card-title">If you go to bed now, you should wake up at...</h5>
-                <button class="btn btn-primary" @onclick="(e => WhenToWakeUpIfYouFallAsleepAt(DateTime.Now.TimeOfDay))">Calculate</button>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" @onclick="(e => Result = WakeUpResult(DateTime.Now.TimeOfDay))">Calculate</button>
             </div>
         </div>
         <div class="card">
-            <i class="material-icons">schedule</i>
+            <div class="card-header">
+                <i class="material-icons">schedule</i>
+            </div>
             <div class="card-body">
                 <h5 class="card-title">I plan to fall asleep at</h5>
                 <TimePicker @ref="Time2" Default="new TimeSpan(23, 0, 0)"></TimePicker>
-                <button class="btn btn-primary" @onclick="@(e => WhenToWakeUpIfYouFallAsleepAt(Time2.Time))">Calculate</button>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" @onclick="@(e => Result = WakeUpResult(Time2!.Time))">Calculate</button>
             </div>
         </div>
     </div>
+    <div>
+        @{
+            if (Result is not null)
+            {
+                <div class="card mt-5 bg-dark">
+                    <div class="card-body">
+                       @{
+                            Result(__builder);
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
 </div>
+
+@{
+    RenderFragment BedTimeResult(TimeSpan ts) => __builder =>
+    {
+        <div class="text-white">
+            <p>If you have to wake up at @TwelveHourTime(ts), you should try to fall asleep at one of the following times:</p>
+            <p>
+                @foreach (var (interval, cssClass) in Intervals)
+                {
+                    <span class="@cssClass">@TwelveHourTime(ts.Subtract(interval))</span>
+                    <span class="text-secondary"> or </span>
+                }
+            </p>
+        </div>
+    };
+
+    RenderFragment WakeUpResult(TimeSpan ts) => __builder =>
+    {
+        <div class="text-white">
+            <p>If you plan to fall asleep at @TwelveHourTime(ts), you should try to wakeup at one of the following times:</p>
+            <p>
+                @foreach (var (interval, cssClass) in Intervals)
+                 {
+                     <span class="@cssClass">@TwelveHourTime(ts.Add(interval))</span>
+                     <span class="text-secondary"> or </span>
+                 }
+            </p>
+        </div>
+    };
+}
