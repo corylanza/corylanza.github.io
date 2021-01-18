@@ -2,6 +2,15 @@
     .card {
         .card-header {
             text-align: center;
+            color: rebeccapurple;
+        }
+    }
+
+    .results {
+        .or {
+            &:last-of-type {
+                display: none;
+            }
         }
     }
 }

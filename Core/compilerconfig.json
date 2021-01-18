@@ -1,10 +1,6 @@
 ﻿[
   {
-    "outputFile": "wwwroot/css/styles.css",
-    "inputFile": "Shared/Components/TimePicker.razor.scss"
+    "outputFile": "wwwroot/css/app.css",
+    "inputFile": "App.razor.scss"
   },
-  {
-    "outputFile": "wwwroot/css/styles.css",
-    "inputFile": "Pages/SleepTimeClone.razor.scss"
-  }
 ]

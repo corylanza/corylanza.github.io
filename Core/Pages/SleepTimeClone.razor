@@ -47,7 +47,7 @@
         @{
             if (Result is not null)
             {
-                <div class="card mt-5 bg-dark">
+                <div class="card mt-5 bg-dark results">
                     <div class="card-body">
                        @{
                             Result(__builder);
@@ -68,7 +68,7 @@
                 @foreach (var (interval, cssClass) in Intervals)
                 {
                     <span class="@cssClass">@TwelveHourTime(ts.Subtract(interval))</span>
-                    <span class="text-secondary"> or </span>
+                    <span class="or text-secondary"> or </span>
                 }
             </p>
         </div>
@@ -82,7 +82,7 @@
                 @foreach (var (interval, cssClass) in Intervals)
                  {
                      <span class="@cssClass">@TwelveHourTime(ts.Add(interval))</span>
-                     <span class="text-secondary"> or </span>
+                     <span class="or text-secondary"> or </span>
                  }
             </p>
         </div>
