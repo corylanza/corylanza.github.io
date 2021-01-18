@@ -7,22 +7,26 @@
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                    <span class="material-icons" aria-hidden="true">home</span>
+                    <span class="align-top">Home</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="outlet-lang">
-                    <span class="oi oi-code" aria-hidden="true"></span> Outlet Lang
+                    <span class="material-icons" aria-hidden="true">outlet</span>
+                    <span class="align-top">Outlet Lang</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="rusty-gbc">
-                    <span class="oi oi-calculator" aria-hidden="true"></span> GameBoy Color Emulator
+                    <span class="material-icons" aria-hidden="true">gamepad</span> 
+                    <span class="align-top">GameBoy Color Emulator</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="sleep-time-clone">
-                    <span class="oi oi-moon" aria-hidden="true"></span> Sleep Time Clone
+                    <span class="material-icons" aria-hidden="true">bedtime</span>
+                    <span class="align-top">Sleep Time Clone</span>
                 </NavLink>
             </li>
         </ul>
@@ -32,7 +36,7 @@
 @code {
     private bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {

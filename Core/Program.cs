@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public class Program
+    public static class Program
     {
         public static async Task Main(string[] args)
         {
@@ -20,6 +22,11 @@ namespace Core
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             await builder.Build().RunAsync();
+        }
+
+        public static async Task ScrollToAsync(this IJSRuntime jsRuntime, string query)
+        {
+            await jsRuntime.InvokeVoidAsync("blazorHelpers.scrollToElement", query);
         }
     }
 }

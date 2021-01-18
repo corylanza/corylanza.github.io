@@ -1,0 +1,19 @@
+﻿.sleep-time-clone {
+    .card {
+        .card-header {
+            text-align: center;
+            color: rebeccapurple;
+        }
+    }
+
+    .results {
+
+        min-height: 100px;
+
+        .or {
+            &:last-of-type {
+                display: none;
+            }
+        }
+    }
+}

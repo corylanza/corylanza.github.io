@@ -11,9 +11,24 @@ namespace Core.Shared.Components
         private const string AM = "AM";
         private const string PM = "PM";
 
-        private int HourPicked { get; set; }
-        private int Minute { get; set; }
-        private string AmOrPm { get; set; }
+        [Parameter]
+        public TimeSpan? Default { get; init; }
+
+        private int HourPicked { get; set; } = 1;
+        private int Minute { get; set; } = 0;
+        private string AmOrPm { get; set; } = AM;
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            if(Default is TimeSpan time)
+            {
+                HourPicked = time.Hours % 12;
+                Minute = time.Minutes;
+                AmOrPm = time.Hours > 12 ? PM : AM;
+            }
+        }
 
         public TimeSpan Time => new TimeSpan(AmOrPm == AM ? HourPicked : HourPicked + 12, Minute, 0);
 
