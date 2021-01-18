@@ -1,11 +1,7 @@
 ﻿@page "/sleep-time-clone"
+@inject IJSRuntime __jsRuntime
 
 <div class="sleep-time-clone container">
-    <div class="text-white">
-        <label for="customRange3" class="form-label">How long would you like to sleep for?</label>
-        <input type="range" class="form-range" min="1.5" max="12" step="1.5" @bind-value="HoursToSleep" @bind-value:event="oninput" />
-        <p>@HoursToSleep</p>
-    </div>
     <div class="card-deck">
         <div class="card">
             <div class="card-header">
@@ -16,7 +12,7 @@
                 <TimePicker @ref="Time1" Default="new TimeSpan(8, 0, 0)"></TimePicker>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary" @onclick="(e => Result = BedTimeResult(Time1!.Time))">Calculate</button>
+                <button class="btn btn-primary" @onclick="(e => SetResult(BedTimeResult(Time1.Time)))">Calculate</button>
             </div>
         </div>
         <div class="card">
@@ -27,7 +23,7 @@
                 <h5 class="card-title">If you go to bed now, you should wake up at...</h5>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary" @onclick="(e => Result = WakeUpResult(DateTime.Now.TimeOfDay))">Calculate</button>
+                <button class="btn btn-primary" @onclick="(e => SetResult(WakeUpResult(DateTime.Now.TimeOfDay)))">Calculate</button>
             </div>
         </div>
         <div class="card">
@@ -39,15 +35,15 @@
                 <TimePicker @ref="Time2" Default="new TimeSpan(23, 0, 0)"></TimePicker>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary" @onclick="@(e => Result = WakeUpResult(Time2!.Time))">Calculate</button>
+                <button class="btn btn-primary" @onclick="(e => SetResult(WakeUpResult(Time2.Time)))">Calculate</button>
             </div>
         </div>
     </div>
-    <div>
+    <div class="results">
         @{
             if (Result is not null)
             {
-                <div class="card mt-5 bg-dark results">
+                <div class="card mt-5 bg-dark">
                     <div class="card-body">
                        @{
                             Result(__builder);

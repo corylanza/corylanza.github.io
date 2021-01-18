@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Core.Shared.Components;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace Core.Pages
 {
     public partial class SleepTimeClone
     {
-        private TimePicker Time1;
-        private TimePicker Time2;
-
-        private float HoursToSleep { get; set; }
+        [NotNull]
+        private TimePicker? Time1 { get; set; }
+        [NotNull]
+        private TimePicker? Time2 { get; set; }
 
         private static IEnumerable<(TimeSpan time, string cssClass)> Intervals {
             get {
@@ -22,6 +24,12 @@ namespace Core.Pages
                 yield return (new TimeSpan(7, 30, 0), "text-success");
                 yield return (new TimeSpan(9, 00, 0), "text-success");
             }
+        }
+
+        private async Task SetResult(RenderFragment result)
+        {
+            Result = result;
+            await __jsRuntime.ScrollToAsync(".results");
         }
 
         // Needed because TimeSpan string formatting isn't great,

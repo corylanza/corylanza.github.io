@@ -7,6 +7,9 @@
     }
 
     .results {
+
+        min-height: 100px;
+
         .or {
             &:last-of-type {
                 display: none;

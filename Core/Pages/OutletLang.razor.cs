@@ -72,14 +72,11 @@ namespace Core.Pages
 
         public void ShowOutput(string output)
         {
-            var (code, consoleOutput, result) = History.Last();
+            var (_, consoleOutput, _) = History.Last();
             consoleOutput.Add(output);
         }
 
-        public string GetInput()
-        {
-            return "";
-        }
+        public static string GetInput() => "";
 
         //public void ShowAST()
         //{
