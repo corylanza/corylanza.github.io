@@ -1,0 +1,22 @@
+﻿@page "/spotify-api-demo"
+@inject NavigationManager Navigation
+
+<h3>SpotifyApi</h3>
+
+<a href="@AuthUrl">auth</a>
+
+@code {
+    const string baseUrl = "https://accounts.spotify.com/authorize";
+
+    const string ClientId = "b61eb6c4aebf42bd9f1115f8f6bde54e";
+    
+    private string AuthUrl { get; set; }
+
+    protected override void OnInitialized()
+    {
+        var redirectUri = Navigation.BaseUri + "spotify-callback";
+        AuthUrl = $"{baseUrl}?response_type=token&client_id={ClientId}&redirect_uri={redirectUri}";
+        base.OnInitialized();
+    }
+
+}
