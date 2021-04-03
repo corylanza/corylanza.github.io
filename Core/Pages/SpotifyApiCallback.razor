@@ -1,0 +1,70 @@
+﻿@page "/spotify-callback"
+@inject NavigationManager Navigation
+@inject HttpClient Http
+@using Models.Spotify;
+
+<div>
+    <input type="text" @bind-value="Query" />
+    <button @onclick="_ => OnSearch()">Search</button>
+</div>
+
+<div class="text-white">
+    @Content
+
+   @if(Results is not null)
+    {
+        <h1>Showing @Results.Tracks.Offset to @(Results.Tracks.Offset + Results.Tracks.Items.Count()) out of @Results.Tracks.Total</h1>
+        @if(!string.IsNullOrEmpty(Results.Tracks.Previous))
+        {
+            <button @onclick="_ => OnSearch(Results.Tracks.Previous)">Previous</button>
+        }
+        @if(!string.IsNullOrEmpty(Results.Tracks.Next))
+        {
+            <button @onclick="_ => OnSearch(Results.Tracks.Next)">Next</button>
+        }
+        foreach(var track in Results.Tracks.Items)
+        {
+            var images = track.Album.Images.FirstOrDefault();
+            <div class="">
+                <img src="@images.Url" style="width: 5%;"/>
+                <span><a href="@track.Uri">@track.Name</a></span>
+            </div>
+        }
+    }
+</div>
+
+@code {
+
+    private string Query { get; set; }
+
+    private string AccessToken { get; set; }
+
+    private string Content { get; set; }
+
+    private SearchResults? Results { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Navigation.TryGetHashParameter<string>("access_token", out string? access_token))
+        {
+            AccessToken = access_token;
+        }
+        else
+        {
+            Content = "didn't work";
+        }
+
+        base.OnInitialized();
+    }
+
+    private async Task OnSearch(string query = null)
+    {
+        query ??= $"https://api.spotify.com/v1/search?q={Query}&type=album,artist,playlist,track,show,episode";
+        var request = new HttpRequestMessage(HttpMethod.Get, query);
+        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", AccessToken);
+
+        var response = await Http.SendAsync(request);
+        Results = await response.Content.ReadFromJsonAsync<SearchResults>();
+        //Content = await response.Content.ReadAsStringAsync();
+    }
+}
