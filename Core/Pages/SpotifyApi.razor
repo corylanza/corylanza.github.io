@@ -1,22 +1,125 @@
 ﻿@page "/spotify-api-demo"
 @inject NavigationManager Navigation
+@inject HttpClient Http
+@inject IJSRuntime JS
+@inject ISpotifyService Spotify
+@using Services
+@using Models.Spotify
 
-<h3>SpotifyApi</h3>
 
-<a href="@AuthUrl">auth</a>
+@if (true)
+{
+    <div class="d-inline-block">
+        <input type="text" @bind-value="Query" />
+        <button @onclick="_ => OnSearch()">Search</button>
+        <button @onclick="_ => LoadMyTopTracks()">My Top Tracks</button>
+    </div>
+    @*<div class="d-inline-block btn-group" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check d-none" name="btnradio" id="btnradio1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="btnradio1">Tracks</label>
+
+            <input type="radio" class="btn-check d-none" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio2">Albums</label>
+
+            <input type="radio" class="btn-check d-none" name="btnradio" id="btnradio3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btnradio3">Artists</label>
+        </div>*@
+}
+
+
+<div class="text-white">
+    @Results
+</div>
 
 @code {
-    const string baseUrl = "https://accounts.spotify.com/authorize";
 
-    const string ClientId = "b61eb6c4aebf42bd9f1115f8f6bde54e";
-    
-    private string AuthUrl { get; set; }
+    private string? Query { get; set; }
 
-    protected override void OnInitialized()
+    private RenderFragment? Results { get; set; }
+
+
+    private async Task OnSearch()
     {
-        var redirectUri = Navigation.BaseUri + "spotify-callback";
-        AuthUrl = $"{baseUrl}?response_type=token&client_id={ClientId}&redirect_uri={redirectUri}";
-        base.OnInitialized();
+        Results = RenderList((await Spotify.SearchFor(Query)).Tracks);
     }
+
+    private async Task LoadMyTopTracks()
+    {
+        Results = RenderList(await Spotify.UsersTopPlayedTracks());
+    }
+
+    private async Task<SearchResults> Get(string url)
+    {
+        return await Spotify.GetUrl<SearchResults>(url);
+    }
+
+    private async Task RenderTracksHref(string url)
+    {
+        Results = RenderList((await Get(url)).Tracks);
+    }
+
+    private RenderFragment RenderList<T>(PagingObject<T> items) => __builder =>
+    {
+        <div class="container">
+           <h1>Showing @items.Offset to @(items.Offset + items.Items.Count()) out of @items.Total</h1>
+           @if (!string.IsNullOrEmpty(items.Previous))
+            {
+                <button @onclick="_ => RenderTracksHref(items.Previous)">Previous</button>
+            }
+           @if (!string.IsNullOrEmpty(items.Next))
+            {
+                <button @onclick="_ => RenderTracksHref(items.Next)">Next</button>
+            }
+
+           @if (items.Items is IEnumerable<TrackObject> tracks)
+            {
+               @foreach (var track in tracks)
+                {
+                    @RenderTrack(track)
+                }
+            }
+           @if (items.Items is IEnumerable<SimplifiedAlbumObject> albums)
+            {
+               @foreach (var album in albums)
+                {
+                    @RenderAlbum(album)
+                }
+            }
+        </div>
+    };
+
+    private RenderFragment RenderTrack(TrackObject track) => __builder =>
+    {
+        var images = track.Album.Images.FirstOrDefault();
+        <div class="row">
+            <img class="col-3 col-lg-2" src="@images.Url" />
+            <div class="col-9 col-lg-10">
+                @*<a href="@track.Uri">@track.Name</a>*@
+                <p>@track.Name</p>
+                @foreach (var artist in track.Artists)
+                    {
+                    @*<a href="@artist.Uri">@artist.Name </a>*@
+                    <p>@artist.Name </p>
+                    }
+            </div>
+        </div>
+    };
+
+    private RenderFragment RenderAlbum(SimplifiedAlbumObject album) => __builder =>
+    {
+        var images = album.Images.FirstOrDefault();
+        <div class="row">
+            <img class="col-3 col-lg-2" src="@images.Url" />
+            <div class="col-9 col-lg-10">
+                @*<a href="@track.Uri">@track.Name</a>*@
+                <p>@album.Name</p>
+                @foreach (var artist in album.Artists)
+                    {
+                    @*<a href="@artist.Uri">@artist.Name </a>*@
+                    <p>@artist.Name </p>
+                    }
+            </div>
+        </div>
+    };
 
 }

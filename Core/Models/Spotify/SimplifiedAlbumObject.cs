@@ -11,5 +11,11 @@ namespace Core.Models.Spotify
     {
         [DataMember(Name = "images"), NotNull]
         public IEnumerable<ImageObject>? Images { get; set; }
+
+        [DataMember(Name = "artists"), NotNull]
+        public IEnumerable<SimplifiedArtistObject>? Artists { get; set; }
+
+        [DataMember(Name = "name"), NotNull]
+        public string? Name { get; set; }
     }
 }

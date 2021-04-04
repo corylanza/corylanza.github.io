@@ -1,3 +1,4 @@
+using Core.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.WebUtilities;
@@ -20,8 +21,9 @@ namespace Core
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
-
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            var httpClient = new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) };
+            builder.Services.AddTransient(sp => httpClient);
+            builder.Services.AddSingleton<ISpotifyService, SpotifyService>();
 
             await builder.Build().RunAsync();
         }
@@ -94,6 +96,32 @@ namespace Core
 
             value = default;
             return false;
+        }
+
+        public static async Task SetCookie<T>(this IJSRuntime js, string cname, T? value, int expiration_seconds)
+        {
+            await js.InvokeVoidAsync("blazorHelpers.writeCookie", new object[] { cname, value, expiration_seconds  });
+        }
+
+        public static async Task<T?> GetCookie<T>(this IJSRuntime js, string cname)
+        {
+            string? value = await js.InvokeAsync<string?>("blazorHelpers.readCookie", new string[] { cname });
+
+            if (typeof(T) == typeof(int) && int.TryParse(value, out var valueAsInt))
+            {
+                return (T)(object)valueAsInt;
+            }
+
+            if (typeof(T) == typeof(string))
+            {
+                return (T)(object)value.ToString();
+            }
+
+            if (typeof(T) == typeof(decimal) && decimal.TryParse(value, out var valueAsDecimal))
+            {
+                return (T)(object)valueAsDecimal;
+            }
+            return default;
         }
 
         public static async Task ScrollToAsync(this IJSRuntime jsRuntime, string query)
