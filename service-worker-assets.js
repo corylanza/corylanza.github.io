@@ -45,7 +45,7 @@
       "url": "rusty-gbc-dist\/gbc_wasm.wasm"
     },
     {
-      "hash": "sha256-lhSUu0YcwBwUVoQyVMi699\/Sx\/j7OWJPlAe94638dgw=",
+      "hash": "sha256-+7zbCx\/Y4xIpDSykbAVYVcEZsaMXbteE4\/M3ezS5yqQ=",
       "url": "rusty-gbc-dist\/index.html"
     },
     {
@@ -265,5 +265,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "7bx5aQr2"
+  "version": "d78Xogt+"
 };
