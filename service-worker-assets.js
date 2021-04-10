@@ -37,15 +37,15 @@
       "url": "rusty-gbc-dist\/about.html"
     },
     {
-      "hash": "sha256-iJPiV6nPKOusT7m1yDaoFZMvMxWhoNfnMTxoyJFfsJk=",
+      "hash": "sha256-CQgO1lHlTMfsJbPWI1dWYgDkVmQinJ2SKPYvRy8xltY=",
       "url": "rusty-gbc-dist\/gbc_wasm.js"
     },
     {
-      "hash": "sha256-PrkKA4SurfetEHwm7+o2vaf4e7\/79vZUv7rzXDijq8Y=",
+      "hash": "sha256-y2UP7XweI5XrxxfbE+lVfEkjd3K04RSAvwpdCbFWjxw=",
       "url": "rusty-gbc-dist\/gbc_wasm.wasm"
     },
     {
-      "hash": "sha256-lf66iFWOuhSY9T+IKMYFOgIWRmci+Sis7D5AV0eicd8=",
+      "hash": "sha256-lhSUu0YcwBwUVoQyVMi699\/Sx\/j7OWJPlAe94638dgw=",
       "url": "rusty-gbc-dist\/index.html"
     },
     {
@@ -265,5 +265,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "vwZcbUqR"
+  "version": "7bx5aQr2"
 };

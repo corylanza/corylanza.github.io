@@ -552,8 +552,8 @@ Module.STDWEB_PRIVATE.acquire_tmp = function( dummy ) {
     return {
         imports: {
             env: {
-                "__cargo_web_snippet_0a02c7764aacc2ed939a149ae98000223d3eebe8": function($0) {
-                var r = Module.STDWEB_PRIVATE.acquire_js_reference( $0 );return (r instanceof DOMException) && (r.name === "InvalidStateError");
+                "__cargo_web_snippet_081fd3471d83c68aa8726f2e14f77e6855ff27e0": function($0) {
+                $0 = Module.STDWEB_PRIVATE.to_js($0);{update_frame_image_data(($0));}
             },
             "__cargo_web_snippet_0f503de1d61309643e0e13a7871406891e3691c9": function($0) {
                 Module.STDWEB_PRIVATE.from_js($0, (function(){return window;})());
@@ -588,9 +588,6 @@ Module.STDWEB_PRIVATE.acquire_tmp = function( dummy ) {
             "__cargo_web_snippet_3c63e773071319eff09af93ceb0203933dc4f233": function($0) {
                 var o = Module.STDWEB_PRIVATE.acquire_js_reference( $0 );return (o instanceof KeyboardEvent && o.type === "keyup");
             },
-            "__cargo_web_snippet_407e59d17f367da0e0c35dadee76c0df936d0c47": function($0, $1, $2, $3, $4) {
-                $1 = Module.STDWEB_PRIVATE.to_js($1);$2 = Module.STDWEB_PRIVATE.to_js($2);$3 = Module.STDWEB_PRIVATE.to_js($3);$4 = Module.STDWEB_PRIVATE.to_js($4);Module.STDWEB_PRIVATE.from_js($0, (function(){try{($1).putImageData(($2),($3),($4));return{success:true};}catch(error){return{error:error,success:false};}})());
-            },
             "__cargo_web_snippet_49ae24e0f2d690c290030200ef793256363af281": function($0, $1) {
                 $1 = Module.STDWEB_PRIVATE.to_js($1);Module.STDWEB_PRIVATE.from_js($0, (function(){return($1).getContext("2d");})());
             },
@@ -611,9 +608,6 @@ Module.STDWEB_PRIVATE.acquire_tmp = function( dummy ) {
             },
             "__cargo_web_snippet_72fc447820458c720c68d0d8e078ede631edd723": function($0, $1, $2) {
                 console.error( 'Panic location:', Module.STDWEB_PRIVATE.to_js_string( $0, $1 ) + ':' + $2 );
-            },
-            "__cargo_web_snippet_798edd23c05eb5181f10e8aaf4c3cb846dfd0a97": function($0) {
-                var o = Module.STDWEB_PRIVATE.acquire_js_reference( $0 );return (o instanceof ImageData);
             },
             "__cargo_web_snippet_7b068412cd4ce2f1e700495ac2d3d3871a0b29bf": function($0) {
                 $0 = Module.STDWEB_PRIVATE.to_js($0);window.reader={};window.reader.run_rom=($0);
@@ -653,9 +647,6 @@ Module.STDWEB_PRIVATE.acquire_tmp = function( dummy ) {
             },
             "__cargo_web_snippet_b33a39de4ca954888e26fe9caa277138e808eeba": function($0, $1) {
                 $1 = Module.STDWEB_PRIVATE.to_js($1);Module.STDWEB_PRIVATE.from_js($0, (function(){return($1).length;})());
-            },
-            "__cargo_web_snippet_c078dc57457b94ded99e88972bcc57009d8dde03": function($0, $1) {
-                $1 = Module.STDWEB_PRIVATE.to_js($1);Module.STDWEB_PRIVATE.from_js($0, (function(){{return create_frame_image_data(($1));}})());
             },
             "__cargo_web_snippet_d3336fefc8646aa17b501ca0d1fc23db2bfd8df2": function($0, $1) {
                 $1 = Module.STDWEB_PRIVATE.to_js($1);Module.STDWEB_PRIVATE.from_js($0, (function(){return($1).height;})());
