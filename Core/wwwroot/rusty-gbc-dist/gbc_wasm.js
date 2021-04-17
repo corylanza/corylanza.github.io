@@ -576,6 +576,9 @@ Module.STDWEB_PRIVATE.acquire_tmp = function( dummy ) {
             "__cargo_web_snippet_29ef3a8aaefcd4cb1dfc6284d7e36127515d26ae": function($0) {
                 var o = Module.STDWEB_PRIVATE.acquire_js_reference( $0 );return (o instanceof KeyboardEvent && o.type === "keydown");
             },
+            "__cargo_web_snippet_2cd523e4a99218bc32b6d1e6e1eaf6a229b628d8": function($0, $1) {
+                $1 = Module.STDWEB_PRIVATE.to_js($1);Module.STDWEB_PRIVATE.from_js($0, (function(){{return readSaveFile(($1));}})());
+            },
             "__cargo_web_snippet_2e8afee19bd8932c3b4a2099db78bdf6a5549956": function($0, $1) {
                 $0 = Module.STDWEB_PRIVATE.to_js($0);$1 = Module.STDWEB_PRIVATE.to_js($1);($0).innerText=($1)
             },
@@ -609,11 +612,11 @@ Module.STDWEB_PRIVATE.acquire_tmp = function( dummy ) {
             "__cargo_web_snippet_72fc447820458c720c68d0d8e078ede631edd723": function($0, $1, $2) {
                 console.error( 'Panic location:', Module.STDWEB_PRIVATE.to_js_string( $0, $1 ) + ':' + $2 );
             },
+            "__cargo_web_snippet_74ffda392ba9cea038f36e43bd13d09eb8150411": function($0, $1) {
+                $0 = Module.STDWEB_PRIVATE.to_js($0);$1 = Module.STDWEB_PRIVATE.to_js($1);{window.save_bytes(($0),($1));}
+            },
             "__cargo_web_snippet_7b068412cd4ce2f1e700495ac2d3d3871a0b29bf": function($0) {
                 $0 = Module.STDWEB_PRIVATE.to_js($0);window.reader={};window.reader.run_rom=($0);
-            },
-            "__cargo_web_snippet_7bead6b563d52eee65504adb6b76c5cacb5428d3": function($0) {
-                $0 = Module.STDWEB_PRIVATE.to_js($0);($0).preventDefault();
             },
             "__cargo_web_snippet_7c8dfab835dc8a552cd9d67f27d26624590e052c": function($0) {
                 var r = Module.STDWEB_PRIVATE.acquire_js_reference( $0 );return (r instanceof DOMException) && (r.name === "SyntaxError");
