@@ -122,9 +122,12 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 pt-4 pt-lg-0">
-                    <div class="card bg-color-primary mb-4 d-none d-md-flex">
+                    <div class="card bg-color-primary mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">Info</h5>
+                            <h5 class="card-title">Game</h5>                            
+                            <label class="btn btn-primary">
+                                Load ROM <input type="file" id="file-input" hidden>
+                            </label>
                             <table class="table table-dark">
                                 <tbody>
                                     <tr>
@@ -139,18 +142,33 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card bg-color-primary mb-4 d-none d-md-flex">
+                    <div class="card bg-color-primary mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">About</h5>
-                            <p class="card-text">In progress</p>
-                        </div>
-                    </div>
-                    <div class="card bg-color-primary mb-4" id="debug-container">
-                        <div class="card-body">
-                            <h5 class="card-title">Debugger</h5>
-                            <label class="btn btn-primary">
-                                Load ROM <input type="file" id="file-input" hidden>
-                            </label>
+                            <h5 class="card-title">Controls</h5>
+                            <table class="table table-dark">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">D-pad</th>
+                                        <td>Arrow keys</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">A</th>
+                                        <td>S</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">B</th>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Start</th>
+                                        <td>Enter</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Select</th>
+                                        <td>Space</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -196,7 +214,6 @@
             var fileReader = new FileReader();
             fileReader.onloadend = e => Rust.gbc_wasm
                 .then(reader => {
-                    document.getElementById('debug-container').classList.add('d-none');
                     window.reader.run_rom(fileReader);
                 });
 
