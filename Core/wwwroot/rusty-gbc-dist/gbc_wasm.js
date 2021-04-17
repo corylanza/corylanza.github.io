@@ -612,6 +612,9 @@ Module.STDWEB_PRIVATE.acquire_tmp = function( dummy ) {
             "__cargo_web_snippet_7b068412cd4ce2f1e700495ac2d3d3871a0b29bf": function($0) {
                 $0 = Module.STDWEB_PRIVATE.to_js($0);window.reader={};window.reader.run_rom=($0);
             },
+            "__cargo_web_snippet_7bead6b563d52eee65504adb6b76c5cacb5428d3": function($0) {
+                $0 = Module.STDWEB_PRIVATE.to_js($0);($0).preventDefault();
+            },
             "__cargo_web_snippet_7c8dfab835dc8a552cd9d67f27d26624590e052c": function($0) {
                 var r = Module.STDWEB_PRIVATE.acquire_js_reference( $0 );return (r instanceof DOMException) && (r.name === "SyntaxError");
             },
