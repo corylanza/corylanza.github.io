@@ -49,12 +49,28 @@
       "url": "rusty-gbc-dist\/gbc_wasm.wasm"
     },
     {
-      "hash": "sha256-54n7jNRm3mtXg7GSpN1QXH0tl9cmfC2r8cNZZpjq7sg=",
-      "url": "rusty-gbc-dist\/index.html"
+      "hash": "sha256-xP49nX4HnP\/ky9FHqfOg5S5ADrTgK5X6ShnjjfMNv5U=",
+      "url": "rusty-gbc-dist\/icons\/gbc-120.png"
     },
     {
-      "hash": "sha256-GcDEyVSwJmO0nLGB9TlzvSi+nSm+K6ipCuYRXLqLQD8=",
-      "url": "rusty-gbc-dist\/rusty-gbc256.png"
+      "hash": "sha256-daGMmygIQiBxn3IYmz6mYRCOZHyhkwDtZI+skpcoUwc=",
+      "url": "rusty-gbc-dist\/icons\/gbc-128.png"
+    },
+    {
+      "hash": "sha256-zTxEVY+MZXnzMphy19aiSy65Vxe4dWxblYbAy6UfaU0=",
+      "url": "rusty-gbc-dist\/icons\/gbc-180.png"
+    },
+    {
+      "hash": "sha256-V65pDJp9fYKWLeA23uodHJr6oruGWCT1dh7Elu73H+k=",
+      "url": "rusty-gbc-dist\/icons\/gbc-192.png"
+    },
+    {
+      "hash": "sha256-QdbP9fwkZ4zl64xvo\/wj6DmRgkjrNfkdsiSMyTrnJDg=",
+      "url": "rusty-gbc-dist\/icons\/gbc-256.png"
+    },
+    {
+      "hash": "sha256-54n7jNRm3mtXg7GSpN1QXH0tl9cmfC2r8cNZZpjq7sg=",
+      "url": "rusty-gbc-dist\/index.html"
     },
     {
       "hash": "sha256-nXByiCO4+RYyh+A88TSSZDwAJMF7M7Up\/h6dfAA19C8=",
@@ -273,5 +289,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "Qgapxcxf"
+  "version": "Ekyy7lhZ"
 };
