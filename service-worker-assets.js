@@ -37,7 +37,7 @@
       "url": "rusty-gbc-dist\/about.html"
     },
     {
-      "hash": "sha256-m5p\/3piNkd6WILbvZ9d+ODrO78TkzPht0HYFWLch9B4=",
+      "hash": "sha256-mnu7JVaUNe3\/EixrniKTd4xPdvQUhqbEYtnJIHDd4Ig=",
       "url": "rusty-gbc-dist\/app.webmanifest"
     },
     {
@@ -273,5 +273,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "W21Gfm+J"
+  "version": "+8QCZACy"
 };

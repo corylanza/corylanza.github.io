@@ -1,7 +1,7 @@
 {
     "name": "Rust GBC",
     "short_name": "Rusty GBC",
-    "start_url": "/",
+    "start_url": "/rusty-gbc-dist/index.html",
     "display": "standalone",
     "background_color": "#6935bd",
     "description": "A Nintendo Gameboy and Gameboy Color emulator built using Rust compiled to WebAssembly",
