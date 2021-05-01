@@ -21,7 +21,7 @@
       "url": "favicon.ico"
     },
     {
-      "hash": "sha256-p7e7G8\/ZlsTj+A4YQCs2IPnbFZ7fcqCqN3K21EVfMuU=",
+      "hash": "sha256-woW9fMN7Tu6N9atcBNBKv8AsQNAo\/cTSFvfzdW3UZqw=",
       "url": "index.html"
     },
     {
@@ -273,5 +273,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "+8QCZACy"
+  "version": "RSI2BpJo"
 };
