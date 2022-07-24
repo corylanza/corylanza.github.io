@@ -28,24 +28,19 @@
         var editor;
 
         function getCodeEditorValue() {
-            console.log(window.editor.getValue());
             return window.editor.getValue();
         }
 
         function highlightCode(id) {
-            console.log('updated');
-            editor = ace.edit('editor');
-            editor.setTheme("ace/theme/dracula");
-            editor.session.setMode("ace/mode/javascript");
-        }
-
-        function helloWorld() {
-
+            editor = ace.edit('editor', {
+                theme: "ace/theme/dracula",
+                mode: "ace/mode/javascript",
+                useWorker: false
+            });
         }
     </script>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="js/blazor-helpers.js"></script>
-    <!--<script>navigator.serviceWorker.register('service-worker.js');</script>-->
 </body>
 
 </html>

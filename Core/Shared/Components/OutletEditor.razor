@@ -3,23 +3,9 @@
 <style>
     #editor {
         min-height: 400px;
-        min-width: 600px;
     }
 </style>
 
 <div id="@(ID ?? "editor")" class="w-100 h-100">
-class Person {
-    
-    string Name = "";
-
-    Person(string name) {
-        Name = name;
-    }
-    
-    void Speak() {
-        console.print("My name is " + Name);
-    }
-}
-
-Person("Cory").Speak();
+@ChildContent
 </div>

@@ -18,7 +18,10 @@ namespace Core.Pages
         // value set in razor component, will not be null
         private OutletEditor? Editor { get; set; }
 
-        public List<(string code, List<string> consoleOutput, Operand? result)> History = new List<(string, List<string>, Operand?)>();
+        private string? CurrentExample { get; set; }
+        private string? Output { get; set; }
+        private string? ReturnValue { get; set; }
+        private bool ShowOutput { get; set; }
 
         private const string success = "text-success";
         private const string failure = "text-danger";
@@ -27,14 +30,12 @@ namespace Core.Pages
 
         private ReplOutletProgram Program { get; set; }
 
-        //private Node? AST { get; set; }
-
         public OutletLang()
         {
             var browserInterface = new SystemInterface(
                 stdin: GetInput,
-                stdout: ShowOutput,
-                stderr: ShowError
+                stdout: StdOut,
+                stderr: StdError
             );
             Program = new ReplOutletProgram(browserInterface);
         }
@@ -45,14 +46,13 @@ namespace Core.Pages
         {
             var input = await Editor.GetValue();
             Errors.Clear();
+            Output = string.Empty;
             var result = Program.Run(Encoding.ASCII.GetBytes(input));
             if(!Errors.Any())
             {
-                History.Add((input, new List<string>(), null));
-                var last = History.Last();
-                last.result = result;
-                History.RemoveAt(History.Count - 1);
-                History.Add(last);
+                var outputString = result?.ToString();
+                ReturnValue = $"Returned: {(string.IsNullOrWhiteSpace(outputString) ? "void" : outputString)}";
+                ShowOutput = true;
             }
         }
 
@@ -65,22 +65,16 @@ namespace Core.Pages
             CheckCssClass = Errors.Count > 0 ? failure : success;
         }
 
-        public void ShowError(Exception ex)
+        public void StdError(Exception ex)
         {
-            Errors.Add(ex.Message);
+            Errors.Add($"{ex.GetType().FullName}:\n{ex.Message}\n{ex.StackTrace}");
         }
 
-        public void ShowOutput(string output)
+        public void StdOut(string output)
         {
-            var (_, consoleOutput, _) = History.Last();
-            consoleOutput.Add(output);
+            Output += $"StdOut: {output}";
         }
 
         public static string GetInput() => "";
-
-        //public void ShowAST()
-        //{
-        //    AST = Program.GenerateAST();
-        //}
     }
 }

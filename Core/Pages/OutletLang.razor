@@ -2,76 +2,184 @@
 @inject IJSRuntime JSRuntime;
 @using Microsoft.AspNetCore.Components.Rendering
 
-@functions {
-    private void ASTNode(RenderTreeBuilder __builder, Outlet.TreeViewer.Node node)
+@{
+    Dictionary<string, RenderFragment> Examples = new Dictionary<string, RenderFragment>
     {
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">@node.Text</h5>
-            </div>
-            <div class="list-group">
-                @foreach(var child in node.Children)
-                {
-                    ASTNode(__builder, child);
-                }
-            </div>
-        </a>
+        {
+            "Types", __builder =>
+            {
+                <OutletEditor ID="editor" @ref="Editor">
+
+                </OutletEditor>
+            }
+        },
+        {
+            "Object Oriented", __builder =>
+            {
+                <OutletEditor ID="editor" @ref="Editor">
+class Person {
+
+    string Name = "";
+
+    Person(string name) {
+        Name = name;
+    }
+
+    void Speak() {
+        console.print("My name is " + Name);
     }
 }
 
-<div class="container">
-   @foreach (var (input, consoleOutput, result) in History)
-    {
-        <div class="alert bg-dark text-white" role="alert">
-            <p><span class="oi oi-chevron-right mr-3"></span>@input</p>
-        </div>
-       @foreach (var output in consoleOutput)
+Person("Cory").Speak();
+                </OutletEditor>
+            }
+        },
         {
-            <div class="alert bg-dark text-white" role="alert">
-                <p><span class="oi oi-comment-square mr-3"></span>@output</p>
-            </div>
-        }
-        <div class="alert bg-dark text-white" role="alert">
-            <p><span class="oi oi-chevron-left mr-3"></span>@result</p>
-        </div>
-        @*<div class="card my-1">
-            <h5 class="card-header">@input</h5>
-            <div class="card-body">
-                @foreach (var output in consoleOutput)
-                {
-                    <p class="card-text">@output</p>
-                }
-                <h5 class="card-title">@result</h5>
-            </div>
-        </div>*@
-    }
+            "Functions", __builder =>
+            {
+                <OutletEditor ID="editor" @ref="Editor">
+// inline
+bool equal(int a, int b) => a == b;
+// traditional (and demonstration of mutual recursion)
+bool even(int n) {
+  if(n == 0) return true;
+  return odd(n-1);
+}
+bool odd(int n) {
+  if(n == 0) return false;
+  return even(n-1);
+}
+                </OutletEditor>
+            }
+        },
+        {
+            "Syntax", __builder =>
+            {
+                <OutletEditor ID="editor" @ref="Editor">
+int a = 5;
+// Array and Tuple types
+int[] array = [3,4,5,6,7];
+(int, string) tuple = (3, "tuple");
+// Type constructions can be combined
+(int, string)[] arraytuple = [(4, "this is a tuple"), (54, "inside of an array")];
+int[][] multidimensional;
+// Function types
+(int, int) => bool = equal;
+// Type Nicknames
+type numbertuple = (int, int);
+                </OutletEditor>
+            }
+        },
+        {
+            "FizzBuzz", __builder =>
+            {
+                <OutletEditor ID="editor" @ref="Editor">
+for(int i in 0...100) {
+	if(i % 3 == 0 && i % 5 == 0) console.print("FizzBuzz");
+	else if(i % 3 == 0) console.print("Fizz");
+	else if(i % 5 == 0) console.print("Buzz");
+	else console.print(i);
+}
+                </OutletEditor>
+            }
+        },
+        {
+            "Local and Anonymous Functions", __builder =>
+            {
+                <OutletEditor ID="editor" @ref="Editor">
+(string) => int MakePoint(int x, int y) {
+	int closure(string method) {
+		if(method == "x") return x;
+		else return y;
+	} return closure;
+}
+(string) => int point = MakePoint(1, 2);
+console.print(point("x"));
+console.print(point("y"));
+(string) => int point2 = MakePoint(3, 4);
+console.print(point2("x"));
+console.print(point2("y"));
+console.print(point("x"));
+console.print(point("y"));
+                </OutletEditor>
+            }
+        },
+        {
+            "Placeholder", __builder =>
+            {
+                <OutletEditor ID="editor" @ref="Editor">
 
-    @if (History.Count > 0)
-    {
-        <button class="btn btn-primary my-1" @onclick="() => History.Clear()">Clear History</button>
-    }
-    @*<button class="btn btn-primary my-1" @onclick="ShowAST">Show AST</button>*@
+                </OutletEditor>
+            }
+        },
+        {
+            "Another Placeholder", __builder =>
+            {
+                <OutletEditor ID="editor" @ref="Editor">
 
-    <div class="row">
-        <div class="col-12 col-md-2">
-            <h3 class="text-white">Demo</h3>
-        </div>
+                </OutletEditor>
+            }
+        },
+    };
+}
+
+<div class="container">
+    <h1 class="text-white text-center">Outlet Programming Language Demo</h1>
+    <div class="row justify-content-end my-3">
         <div class="col-6 col-md-2">
             <button class="btn btn-light w-100" @onclick="RunOutlet">
                 <span class="material-icons" aria-hidden="false">play_circle</span>
-                Run
+                <span class="align-top">Run</span>
             </button>
         </div>
         <div class="col-6 col-md-2">
             <button class="btn btn-light w-100" @onclick="CheckOutlet">
-                <span class="oi oi-check @CheckCssClass" aria-hidden="false"></span>
-                Check
+                <span class="material-icons @CheckCssClass" aria-hidden="false">check_circle</span>
+                <span class="align-top">Check</span>
             </button>
         </div>
-        <div class="col-12">
-            <OutletEditor ID="editor" @ref="Editor" />
+        @if (ShowOutput)
+        {
+            <div class="col-6 col-md-2 order-first">
+                <button class="btn btn-light w-100" @onclick="() => ShowOutput = false">
+                    <span class="material-icons" aria-hidden="false">edit_note</span>
+                    <span class="align-top">Edit</span>
+                </button>
+            </div>
+        }
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-4 mb-4">
+            <div class="list-group">
+                @foreach(var exampleTitle in Examples.Keys)
+                {
+                    bool active = CurrentExample == exampleTitle;
+                    <button type="button"
+                        class="list-group-item list-group-item-action @(active ? "active" : string.Empty)"
+                        aria-current="@active.ToString().ToLower()"
+                        @onclick="_ => {
+                            CurrentExample = exampleTitle;
+                            ShowOutput = false;
+                        }">@exampleTitle</button>
+                }
+            </div>
         </div>
-       @foreach (var error in Errors)
+        <div class="col-12 col-md-8">
+            @if (ShowOutput)
+            {
+                <div class="p-3" style="background-color: #282a36; min-height: 30vh;">
+                    <p class="text-white">@Output</p>
+                    <p class="text-info">@ReturnValue</p>
+                </div>
+            }
+            else
+            {
+                var exampleRenderFragment = (string.IsNullOrEmpty(CurrentExample) ? Examples.First() : Examples.First(x => x.Key == CurrentExample)).Value;
+                @exampleRenderFragment;
+            }
+        </div>
+        @foreach (var error in Errors)
         {
             <div class="col-12 mt-2">
                 <div class="alert alert-danger" role="alert">
@@ -80,13 +188,4 @@
             </div>
         }
     </div>
-
-    @*@if (AST != null)
-    {
-        <div class="list-group">
-        @{
-            ASTNode(__builder, AST);
-        }
-        </div>
-    }*@
 </div>
