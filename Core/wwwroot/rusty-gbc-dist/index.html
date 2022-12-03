@@ -5,10 +5,17 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-
+        <link rel="manifest" href="app.webmanifest">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <style>
+            body {
+                -webkit-user-select: none; /* Safari */        
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* IE10+/Edge */
+                user-select: none; /* Standard */
+            }
+
             .purple {
                 background-color: #6935bd;
             }
@@ -58,7 +65,7 @@
                     <div class="row no-gutters purple d-md-none pt-3">
                         <div class="col-2 offset-1 gray">
                             <div
-                                class="btn btn-secondary mt-3 float-right"
+                                class="btn btn-secondary mt-5 float-right w-100"
                                 ontouchstart="raiseKeyDownEvent('ArrowLeft')" 
                                 ontouchend="raiseKeyUpEvent('ArrowLeft')"
                             >&#9668;</div>
@@ -66,12 +73,12 @@
                         <div class="col-2 gray text-center w-100">
                             <div class="btn-group-vertical pb-4 w-100">
                                 <div
-                                    class="btn btn-secondary mb-2" 
+                                    class="btn btn-secondary mt-2" 
                                     ontouchstart="raiseKeyDownEvent('ArrowUp')" 
                                     ontouchend="raiseKeyUpEvent('ArrowUp')"
                                 >&#9650;</div>
                                 <div
-                                    class="btn btn-secondary"
+                                    class="btn btn-secondary mt-5"
                                     ontouchstart="raiseKeyDownEvent('ArrowDown')" 
                                     ontouchend="raiseKeyUpEvent('ArrowDown')"
                                 >&#9660;</div>
@@ -79,21 +86,21 @@
                         </div>
                         <div class="col-2 gray">
                             <div 
-                                class="btn btn-secondary mt-3"
+                                class="btn btn-secondary mt-5 w-100"
                                 ontouchstart="raiseKeyDownEvent('ArrowRight')" 
                                 ontouchend="raiseKeyUpEvent('ArrowRight')"
                             >&#9658;</div>
                         </div>
                         <div class="col-1 offset-1">
                             <div
-                                class="btn btn-secondary circle-btn mt-3"
+                                class="btn btn-secondary circle-btn mt-5"
                                 ontouchstart="raiseKeyDownEvent('s')" 
                                 ontouchend="raiseKeyUpEvent('s')"
                             >A</div>
                         </div>
                         <div class="col-1 offset-1">
                             <div
-                                class="btn btn-secondary circle-btn mt-3"
+                                class="btn btn-secondary circle-btn mt-5"
                                 ontouchstart="raiseKeyDownEvent('a')" 
                                 ontouchend="raiseKeyUpEvent('a')"
                             >B</div>
@@ -117,7 +124,10 @@
                 <div class="col-12 col-lg-4 pt-4 pt-lg-0">
                     <div class="card bg-color-primary mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">Info</h5>
+                            <h5 class="card-title">Game</h5>                            
+                            <label class="btn btn-primary">
+                                Load ROM <input type="file" id="file-input" hidden>
+                            </label>
                             <table class="table table-dark">
                                 <tbody>
                                     <tr>
@@ -134,16 +144,31 @@
                     </div>
                     <div class="card bg-color-primary mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">About</h5>
-                            <p class="card-text">In progress</p>
-                        </div>
-                    </div>
-                    <div class="card bg-color-primary mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Debugger</h5>
-                            <label class="btn btn-primary">
-                                Load ROM <input type="file" id="file-input" hidden>
-                            </label>
+                            <h5 class="card-title">Controls</h5>
+                            <table class="table table-dark">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">D-pad</th>
+                                        <td>Arrow keys</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">A</th>
+                                        <td>S</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">B</th>
+                                        <td>A</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Start</th>
+                                        <td>Enter</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Select</th>
+                                        <td>Space</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -160,13 +185,38 @@
                 document.dispatchEvent(new KeyboardEvent('keydown', {'key' : key}));
             }
             var timer = new Date();
+            var frameCount = 0;
 
-            function create_frame_image_data(data) {
-                var timer_new = new Date();
-                var fps = Math.round(1000 / (timer_new - timer));
-                document.getElementById("fps").innerText = fps;
-                timer = timer_new;
-                return new ImageData(Uint8ClampedArray.from(data), 160, 144);
+            function update_frame_image_data(data) {
+                frameCount += 1;
+                if((new Date() - timer) > 1000) {
+                    var timer_new = new Date();
+                    var fps = Math.round(frameCount / (1000 / (timer_new - timer)));
+                    frameCount = 0;
+                    document.getElementById("fps").innerText = fps;
+                    timer = timer_new;
+                }
+                document.getElementById('canvas').getContext('2d').putImageData(new ImageData(Uint8ClampedArray.from(data), 160, 144), 0, 0);
+            }
+
+            function readSaveFile(name) {
+                var data = localStorage.getItem(name);
+                if (data) {
+                    var byteString = data.split(',');
+
+                    // write the bytes of the string to an ArrayBuffer
+                    var arrayBuffer = new ArrayBuffer(byteString.length);
+                    var _ia = new Uint8Array(arrayBuffer);
+                    for (var i = 0; i < byteString.length; i++) {
+                        _ia[i] = byteString[i];
+                    }
+                    return _ia;
+                }
+                return new Uint8Array(new ArrayBuffer(0));
+            }
+
+            function save_bytes(name, arrayBuffer) {
+                localStorage.setItem(name, arrayBuffer);
             }
 
             var fileReader = new FileReader();
