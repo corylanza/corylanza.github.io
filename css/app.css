@@ -1,14 +1,45 @@
 ﻿.time-picker select {
-  margin: 0.05rem; }
+  margin: 0.05rem;
+}
 
 .content {
-  min-height: 100vh; }
+  min-height: 100vh;
+}
+.content .bg-dark {
+  background-color: #0C2340;
+}
 
 .sleep-time-clone .card .card-header {
   text-align: center;
-  color: rebeccapurple; }
-
+  color: rebeccapurple;
+}
 .sleep-time-clone .results {
-  min-height: 100px; }
-  .sleep-time-clone .results .or:last-of-type {
-    display: none; }
+  min-height: 100px;
+}
+.sleep-time-clone .results .or:last-of-type {
+  display: none;
+}
+
+.bg-dark {
+  background-color: #0C2340 !important;
+}
+
+.text-pink {
+  color: #F9629F;
+}
+
+.text-purple {
+  color: #6935bd;
+}
+
+.text-argentinan-blue {
+  color: #6CB4EE;
+}
+
+.nav-item .material-icons {
+  margin-right: 0.5rem;
+}
+
+.nav-item:not(:first-of-type) {
+  margin-left: 1rem;
+}
