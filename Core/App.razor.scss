@@ -1,3 +1,27 @@
 ﻿@import 'Shared/Components/TimePicker.razor.scss';
 @import 'Shared/MainLayout.razor.scss';
 @import 'Pages/SleepTimeClone.razor.scss';
+
+.bg-dark {
+    background-color: #0C2340 !important;
+}
+
+.text-pink {
+    color: #F9629F;
+}
+
+.text-purple {
+    color: #6935bd;
+}
+
+.text-argentinan-blue {
+    color: #6CB4EE;
+}
+
+.nav-item .material-icons {
+    margin-right: 0.5rem;
+}
+
+.nav-item:not(:first-of-type) {
+    margin-left: 1rem;
+}

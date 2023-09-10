@@ -1,37 +1,40 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    @*<a class="navbar-brand" href="#"></a>*@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-lg-5">
+    <a class="navbar-brand" href="/">Cory Lanza</a>
+    <span class="navbar-text">
+        Web Developer Porfolio
+    </span>
     <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="@NavMenuCssClass navbar-collapse" id="navbarNav">
+    <div class="@NavMenuCssClass navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                    <span class="material-icons" aria-hidden="true">home</span>
+            <li class="nav-item">
+                <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+                    <span class="material-icons text-pink" aria-hidden="true">home</span>
                     <span class="align-top">Home</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="outlet-lang">
-                    <span class="material-icons" aria-hidden="true">outlet</span>
+                    <span class="material-icons text-argentinan-blue" aria-hidden="true">outlet</span>
                     <span class="align-top">Outlet Lang</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="rusty-gbc">
-                    <span class="material-icons" aria-hidden="true">gamepad</span> 
+                    <span class="material-icons text-purple" aria-hidden="true">gamepad</span> 
                     <span class="align-top">GameBoy Color Emulator</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="sleep-time-clone">
-                    <span class="material-icons" aria-hidden="true">bedtime</span>
+                    <span class="material-icons text-warning" aria-hidden="true">bedtime</span>
                     <span class="align-top">Sleep Time Clone</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink class="nav-link" href="spotify-api-demo">
-                    <span class="material-icons" aria-hidden="true">music_note</span>
+                    <span class="material-icons text-success" aria-hidden="true">music_note</span>
                     <span class="align-top">Spotify API</span>
                 </NavLink>
             </li>
