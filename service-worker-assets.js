@@ -289,7 +289,7 @@
       "url": "rusty-gbc-dist\/icons\/gbc-256.png"
     },
     {
-      "hash": "sha256-54n7jNRm3mtXg7GSpN1QXH0tl9cmfC2r8cNZZpjq7sg=",
+      "hash": "sha256-R9gLbvreGmcmjUpMwjWKZqP9fVNPSQT+N20RAT3+oFQ=",
       "url": "rusty-gbc-dist\/index.html"
     },
     {
@@ -297,5 +297,5 @@
       "url": "site.webmanifest"
     }
   ],
-  "version": "jHTUkY9D"
+  "version": "8am3mqvq"
 };
